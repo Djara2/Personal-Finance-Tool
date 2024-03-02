@@ -1,3 +1,4 @@
+#include <stdbool.h>
 #ifndef CREDIT_CARD_H
 #define CREDIT_CARD_H
 
@@ -27,12 +28,12 @@ typedef struct credit_card
 	unsigned int max_credit;
 } credit_card;
 
-transaction* create_transaction(char vendor_name[], double amount, month[], char day[], char year[]);
+transaction* create_transaction(char vendor_name[], double amount, char month[], char day[], char year[], bool is_paid);
 
 credit_card* create_credit_card(char name[], transaction **transactions, double balance, unsigned int max_credit);
 
 // Writes an array of transactions to a binary file.
 bool write_transactions(transaction **transactions, int transactions_len, FILE *fh);
 
-void read_transactions(transaction ***transactions, unsigned int *transactions_len, unsigned int *transactions_max);
+bool read_transactions(transaction ***transactions, unsigned int *transactions_len, unsigned int *transactions_max, FILE *fh);
 #endif
